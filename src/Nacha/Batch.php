@@ -96,11 +96,11 @@ class Batch
             ->setBatchNumber((string)$this->getHeader()->getBatchNumber());
 
         foreach ($this->debitEntries as $entry) {
-            $entries .= (string)$entry . "\n";
+            $entries .= $this->formatEntry($entry);
         }
 
         foreach ($this->creditEntries as $entry) {
-            $entries .= (string)$entry . "\n";
+            $entries .= $this->formatEntry($entry);
         }
 
         // calculate service code
@@ -120,5 +120,29 @@ class Batch
         $footer->setServiceClassCode((string)$this->header->getServiceClassCode());
 
         return (string)$this->header . "\n" . $entries . $footer;
+    }
+
+    private function formatEntry(Entry $entry) 
+    {
+        $entries = (string)$entry."\n";
+
+        if (count($entry->getAddendas()) > 0) {
+            $entries .= $this->formatAddendas($entry);
+        }
+
+        return $entries;
+    }
+
+    private function formatAddendas(Entry $entry) {
+        $addendas = '';
+
+        foreach ($entry->getAddendas() as $index => $addenda) {
+            $addenda->setAddendaSequenceNumber($index+1); // offset for 0 index
+            $addenda->setEntryDetailSequenceNumber($entry->getTraceNumber());
+
+            $addendas .= (string)$addenda."\n";
+        }
+
+        return $addendas;
     }
 }

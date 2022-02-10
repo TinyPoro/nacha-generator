@@ -1,12 +1,12 @@
 {
-	"name": "dotuancd/file-generator",
+	"name": "tinyporo/file-generator",
 	"license": "GPL-3.0+",
 	"authors": [{
-		"name": "Philip Whitt",
-		"email": "philipwhitt88@gmail.com",
+		"name": "TinyPoro",
+		"email": "vincent@outcubator.com",
 		"homepage": "http://www.philipwhitt.com"
 	}],
-	"description" : "Easy to use NACHA file generation for PPD/CCD transactions. Modeled using NACHA documentation.",
+	"description" : "Easy to use NACHA file generation for PPD/CCD transactions. Modeled using NACHA documentation. (based on https://github.com/philipwhitt/nacha-generator)",
 	"require": {
 	},
 	"require-dev": {

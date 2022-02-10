@@ -20,6 +20,7 @@ class Entry
     protected $subjectName;
     protected $discretionaryData;
     protected $addendaRecordIndicator;
+    protected $addendas = [];
 
     private $hashable = 0;
 
@@ -91,6 +92,11 @@ class Entry
         return $this->traceNumber;
     }
 
+    public final function getAddendas() 
+    {
+        return $this->addendas;
+    }
+
     public function setCheckDigit($checkDigit)
     {
         $this->checkDigit = new Number($checkDigit, 1);
@@ -155,6 +161,13 @@ class Entry
     final public function setTraceNumber($odfi, $count)
     {
         $this->traceNumber = (new Number($odfi, 8)) . (new Number($count, 7));
+        return $this;
+    }
+
+    public final function addAddenda(Addenda $addenda) 
+    {
+        $this->setAddendaRecordIndicator(1);
+        $this->addendas[] = $addenda;
         return $this;
     }
 

@@ -3,7 +3,7 @@
 namespace Nacha\Record;
 
 use Nacha\Field\AddendaType;
-use Nacha\Field\StringHelper;
+use Nacha\Field\Str;
 use Nacha\Field\Number;
 
 class Addenda {
@@ -37,7 +37,7 @@ class Addenda {
 		return $this;
 	}
 	public function setPaymentRelatedInformation($paymentRelatedInformation) {
-		$this->paymentRelatedInformation = new StringHelper($paymentRelatedInformation, 80);
+		$this->paymentRelatedInformation = new Str($paymentRelatedInformation, 80);
 		return $this;
 	}
 	public function setAddendaSequenceNumber($addendaSequenceNumber) {
